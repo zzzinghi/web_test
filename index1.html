@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Example</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <nav class="navbar navbar-expand-sm bg-body-tertiary justify-content: flex-end;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">지역별 재난 안내</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">지역별 재난 안내</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">행동수칙</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <style>
+        .navbar-brand {
+            font-size: 12px; /* 원하는 크기로 조절 */
+            
+        }
+        .nav-link {
+            font-size: 12px; /* 원하는 크기로 조절 */
+        }
+        .a {    
+            display: flex;
+            justify-content: flex-end;
+        }
+        /* 적용이 안됨 (맨 오른쪽으로 보내는 코드라는데) */
+      </style>
+      
+</head>
+
+<style>
+    .header {
+        height: 215px;
+    }
+
+    .main {
+        height: 320px;
+    }
+
+    .search-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+    }
+    .search-box {
+        width: 300px;
+        display: flex;
+    }
+    .search-box input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px 0 0 4px;
+    }
+    .search-box button {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-left: 0;
+        background-color: black;
+        color: white;
+        border-radius: 0 4px 4px 0;
+        cursor: pointer;
+    }
+    .results {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+
+    .navbar {
+        justify-content: right;
+        
+    }
+    .disaster-heading {
+            color: black;
+            font-size: 40px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+        }
+    .disaster-info {
+        display: flex;
+        justify-content: center;
+    }
+    .disaster-line {
+        display: flex;
+        justify-content: center;
+    }
+
+    .main-title {
+        font-size:large
+        
+    }
+
+    .stript {
+        color: black;
+        font-size: 40px;
+        margin-left: 20px;
+        font-weight: bold;
+    }
+    .card-group {
+        justify-content:space-between
+    }
+    .card-img-top {
+        border-radius: 20%;
+        width: 150px;
+        height: 150px;
+    }
+</style>
+
+
+
+<body>
+<header class="header">
+    <h1 class="disaster-heading">재난 발생?! 위기탈출</h1>
+    <p class="disaster-info">위기를 함께 해쳐 나아갈 유용한 정보를 제공하기 위해 노력합니다.</p>
+    <p class="disaster-line">아래버튼을 눌러주시면 [재난안전대책본부]로 이동합니다.</br>
+    
+</header>
+
+<div class="d-grid gap-2 col-6 mx-auto">
+    <button class="btn btn-dark d-grid " type="button">재난안전대책본부</button>
+  </div>
+
+
+<main class="main">
+    <div class="search-container">
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="검색어를 입력하세요">
+            <button type="button" onclick="search()">검색</button>
+        </div>
+    </div>
+    <div class="results" id="results"></div>
+    <script>
+        function search() {
+            var query = document.getElementById('search-input').value;
+            fetch(`https://api.example.com/search?q=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    var resultsDiv = document.getElementById('results');
+                    resultsDiv.innerHTML = "";
+                    data.results.forEach(item => {
+                        var p = document.createElement('p');
+                        p.textContent = item.name;
+                        resultsDiv.appendChild(p);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+
+
+    <p class="main-title">실시간 재난 뉴스</p>
+</main> 
+
+<footer>
+    <p class="stript">재난 안전 활동</p> 
+    <div class="card-group">
+        <div class="card"> 
+          <div class="card-body">
+            <h5 class="card-title">[교육]안전 사각지대 해소</h5>
+            <p></p>
+            <img src="https://th.bing.com/th/id/OIP.UAR-8DBzkwLLSIYy6MHQvAAAAA?w=283&h=180&c=7&r=0&o=5&pid=1.7" class="card-img-top" alt="..." >
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">[공모전]안전한세상 만들기</h5>
+            <p></p>
+            <img src="https://th.bing.com/th/id/OIP.UAR-8DBzkwLLSIYy6MHQvAAAAA?w=283&h=180&c=7&r=0&o=5&pid=1.7"  class="card-img-top" alt="...">
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">[체험]안전훈련</h5>
+            <p></p>
+            <img src="https://th.bing.com/th/id/OIP.UAR-8DBzkwLLSIYy6MHQvAAAAA?w=283&h=180&c=7&r=0&o=5&pid=1.7" class="card-img-top" alt="..." >
+          </div>
+        </div>
+      </div>
+
+
+  </footer>
+</body>
